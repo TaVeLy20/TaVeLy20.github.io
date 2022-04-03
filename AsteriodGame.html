@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- reference: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_animate_3 -->
+
+<html>
+	<head>
+
+		<title>Asteriod</title>
+
+		<style>
+		body {
+		  background-color: black;
+		  color:white;
+		  text-align: center;
+		}
+		#rocket{ 
+			position: relative;
+			animation: topmove 4s infinite;
+			}
+
+		#bear{ 
+			position: relative;
+			animation: leftmove 4s infinite;
+			}
+		@keyframes leftmove {
+		  from {left:500px;}
+		  to {left:-500px;}
+		}
+		</style>
+		
+	</head>
+
+	<body>
+	
+	<h2> Hello here is my moving image <h2>
+	
+	<img id="rocket" src="RocketShip.gif" width=300 >
+	<img id="bear" src="Bear.gif" >
+	
+	<button onclick="moveRocket()">Click Me!</button>
+
+		<script>
+		var id = null;
+		function moveRocket() {
+		  var elem = document.getElementById("rocket");   
+		  var pos = 0;
+		  clearInterval(id);
+		  id = setInterval(frame, 10);
+		  function frame() {
+			if (pos == 350) {
+			  clearInterval(id);
+			} else {
+			  pos++; 
+			  elem.style.top = pos + 'px';
+				}
+			}
+		}
+		</script>
+
+	</body>
+
+</html>
