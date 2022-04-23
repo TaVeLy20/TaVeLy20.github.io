@@ -10,14 +10,17 @@
 		body {
 		  background-color: black;
 		  color:white;
+		  font-size:30px;
 		  text-align: center;
 		}
 		#rocket{ 
+			width:400px;
 			position: relative;
 			animation: topmove 4s infinite;
 			}
 
-		#bear{ 
+		#asteriod{ 
+			width:300px;
 			position: relative;
 			animation: leftmove 4s infinite;
 			}
@@ -25,26 +28,25 @@
 		  from {left:500px;}
 		  to {left:-500px;}
 		}
+		button{width:80px; height:70px;font-size:50px;text-align:center;}
 		</style>
 		
 	</head>
 
-	<body>
-	
-	<h2> Hello here is my moving image <h2>
-	
-	<img id="rocket" src="RocketShip.gif" width=300 >
-	<img id="bear" src="Bear.gif" >
-	
-	<button onclick="moveRocket()">Click Me!</button>
-
+<body onload="startTime()">
+	<div id="txt"></div>
+	<img id="rocket" src="RocketShip.gif" width=300 />
+	<img id="asteriod" src="Asteriod.gif" width=300 />
+	<button onclick="moveRocketdown()">🔻</button>
+	<button onclick="moveRocketup()">🔺</button>
+	<br>
 		<script>
 		var id = null;
-		function moveRocket() {
+		function moveRocketdown() {
 		  var elem = document.getElementById("rocket");   
 		  var pos = 0;
 		  clearInterval(id);
-		  id = setInterval(frame, 10);
+		  id = setInterval(frame, 1);
 		  function frame() {
 			if (pos == 350) {
 			  clearInterval(id);
@@ -53,7 +55,43 @@
 			  elem.style.top = pos + 'px';
 				}
 			}
-		}
+		};
+		function moveRocketup() {
+		  var elem = document.getElementById("rocket");   
+		  var pos = 350;
+		  clearInterval(id);
+		  id = setInterval(frame, 1);
+		  function frame() {
+			if (pos == 0) {
+			  clearInterval(id);
+			} else {
+			  pos--; 
+			  elem.style.top = pos + 'px';
+				}
+			}
+		};
+		// Display TIME. Reference: https://www.wikihow.com/Display-Time-in-HTML
+		function startTime()
+			{
+			var today=new Date();
+			var h=today.getHours();
+			var m=today.getMinutes();
+			var s=today.getSeconds();
+			// add a zero in front of numbers<10 
+			m=checkTime(m);
+			s=checkTime(s);
+			//"Current Time: "+ h+":"+m
+			document.getElementById('txt').innerHTML="On "+ today+ "  You Played: "+s +"s";
+			t=setTimeout('startTime()',500);
+			}
+			function checkTime(i)
+			{
+			if (i<10)
+			{
+			i="0" + i;
+			}
+			return i;
+			}
 		</script>
 
 	</body>
